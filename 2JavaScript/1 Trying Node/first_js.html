@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>    
+
+    <title>First Time Executing JS</title>
+    
+    <script>
+        console.log('Hello World');
+        // function clickMe() {
+        //    document.getElementById('my_para').innerHTML ='This is a new paragraph';
+        // }
+
+        function clickMe() {
+           document.querySelector('#my_para').innerHTML ='This is a new paragraph';
+        }
+
+
+        function styleMe() {
+           document.getElementById('my_para').style.color="red";
+        }
+    </script>
+</head>
+<body>
+    <h1>Welcome to JS World</h1>
+    <p id="my_para">This is a demo paragraph</p>
+    <button onclick="clickMe()">Change Me</button>
+    <button onclick="styleMe()">style Me</button>
+</body>
+</html>

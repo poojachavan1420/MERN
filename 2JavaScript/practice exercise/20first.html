@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS with HTML & CSS</title>
+    <style>
+        .my-button{
+background-color: burlywood;
+        }
+        #add-to-bag{
+            border-radius: 10px;
+            padding: 3px 25px;
+            background-color: rgb(60, 248, 60);
+            border: 0px;
+        }
+        #wishlist{
+            text-transform: uppercase;
+            padding: 3px 35px;
+            border: 2px solid #080909;
+            border-radius: 10px;
+        }
+    </style>
+    <script>
+        alert('Welcome to Practice Exercise');
+        function addtobag(){
+            alert('item added to bag');
+        }
+
+        function wishlist(){
+            alert('item added to your wishlist');
+        }
+    </script>
+</head>
+<body>
+    <main>
+    <button >click</button>
+    <button id="first_button" class="my-button">first</button>
+    <button id="second_button" class="my-button">second</button>
+
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iusto magnam quia culpa veniam nisi hic molestiae dolore eligendi error odit? Vel, error! Repellendus, et asperiores!</p>
+
+    <button id="add-to-bag" onclick="addtobag()" >Add-to-Bag</button>
+    <button id="wishlist" onclick="wishlist()">❤️wishlist</button>
+</main>
+</body>
+</html>
+
