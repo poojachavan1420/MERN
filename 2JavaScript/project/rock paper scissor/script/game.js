@@ -1,6 +1,14 @@
+let score={
+   computer:0,
+   user:0,
+   tie:0,
+
+};
+
+
 function getRandomChoice(){
-   getRandomChoiceandomChoice =Math.floor(Math.random() * 3) + 1;
-   return getRandomChoiceandomChoice;
+   let randomChoice =Math.floor(Math.random() * 3) + 1;
+   return randomChoice;
 }
 
 function getComputerChoice(){
@@ -18,6 +26,9 @@ function getComputerChoice(){
 }
 
 function updateResult(userChoice,computerChoice,result){
+
+   document.querySelector('#score').innerHTML=`
+   score:computerWon:${score.computer},userWon:${score.user},Tie:${score.tie}`;
    document.querySelector('#result').innerHTML=
    `You chose ${userChoice}.<br>
    I chose ${computerChoice}.<br>
@@ -28,15 +39,20 @@ function updateResult(userChoice,computerChoice,result){
    And the result is :${result}`);
 }
 
-function getResult(userChoice,computerChoice){
-     result;
+function computeResult(userChoice,computerChoice){
+    let result ='Unknown';
   if (userChoice==computerChoice){
     result='Tie';
+    score.tie++;
   }else if((computerChoice ==='✊ Rock' && userChoice === '✌️scissor')||
            (computerChoice === '✌️scissor' && userChoice === '🖐️Paper')||
            (computerChoice === '🖐️Paper' && userChoice === '✊ Rock')
    ){
    result='I win';
+   score.computer++;
+  }else{
+   result='You win';
+   score.user++;
   }
   return result;
 }
@@ -44,7 +60,7 @@ function getResult(userChoice,computerChoice){
 function rockClicked(){
    const userChoice='✊ Rock';
    let computerChoice=getComputerChoice();
-   let result=getResult(userChoice,computerChoice);
+   let result=computeResult(userChoice,computerChoice);
    updateResult(userChoice,computerChoice,result);
   
    }
@@ -52,14 +68,14 @@ function rockClicked(){
 function paperClicked(){
    const userChoice='🖐️Paper';
    let computerChoiceText=getComputerChoice();
-   let result=getResult(userChoice,computerChoiceText);
+   let result=computeResult(userChoice,computerChoiceText);
    updateResult(userChoice,computerChoiceText,result);
 }
 
 function scissorClicked(){
    const userChoice='✌️scissor';
    let computerChoiceText=getComputerChoice();
-   let result=getResult(userChoice,computerChoiceText);
+   let result=computeResult(userChoice,computerChoiceText);
    updateResult(userChoice,computerChoiceText,result);
 
 }
