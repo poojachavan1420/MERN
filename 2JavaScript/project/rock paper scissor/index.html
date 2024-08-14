@@ -9,7 +9,7 @@
     <h4 id="score">No Game played Yet</h4>
     <p>Click On one of the following to play the game</p>
 
-    <button class="choice-button" onclick="
+    <button id="first" class="choice-button" onclick="
       rockClicked();">✊Rock</button>
 
 
@@ -20,6 +20,8 @@
 
     <button class="choice-button" onclick="
    scissorClicked();">✌️scissor</button>
+
+    <button class="reset-button" onclick="resetScore();">Reset Score</button>
     
     <h4 id="result"></h4>
     <script src="script/game.js"></script>

@@ -2,8 +2,38 @@ let score={
    computer:0,
    user:0,
    tie:0,
-
+updateScore:function(){
+   this.saveScore();
+   document.querySelector('#score').innerHTML=`
+   score:computerWon:${this.computer},userWon:${this.user},Tie:${this.tie}`;
+},
+   saveScore:function(){
+     let scoreStr=JSON.stringify(this);
+     localStorage.setItem('score',scoreStr);
+     console.log(`scoreSaved:${scoreStr}`);
+   }  
 };
+
+function resetScore(){
+  console.log('Resetting Score');
+  score.computer=0;
+  score.user=0;
+  score.tie=0;
+  score.updateScore();
+}
+
+function init(){
+  let scoreStr=localStorage.getItem('score');
+  if(scoreStr){
+    console.log(`previous score found:${scoreStr}`);
+    let scoreVal=JSON.parse(scoreStr);
+    score.computer=scoreVal.computer;
+    score.user=scoreVal.user;
+    score.tie=scoreVal.tie;
+    score.updateScore();
+   }
+}
+init();
 
 
 function getRandomChoice(){
@@ -27,8 +57,6 @@ function getComputerChoice(){
 
 function updateResult(userChoice,computerChoice,result){
 
-   document.querySelector('#score').innerHTML=`
-   score:computerWon:${score.computer},userWon:${score.user},Tie:${score.tie}`;
    document.querySelector('#result').innerHTML=
    `You chose ${userChoice}.<br>
    I chose ${computerChoice}.<br>
@@ -54,6 +82,7 @@ function computeResult(userChoice,computerChoice){
    result='You win';
    score.user++;
   }
+  score.updateScore();
   return result;
 }
 
