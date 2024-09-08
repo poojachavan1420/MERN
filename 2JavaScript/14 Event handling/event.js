@@ -10,4 +10,11 @@ let buttonClickHandler=()=> {
     }
 }
 let button=document.getElementById('myButton');
-button.onclick= buttonClickHandler;
+
+// Using event handler
+// button.onclick= buttonClickHandler;
+// button.onclick = clickHandler;
+
+// Using event listner
+button.addEventListener('click',clickHandler);
+button.addEventListener('click',buttonClickHandler);button.removeEventListener('click',clickHandler);
