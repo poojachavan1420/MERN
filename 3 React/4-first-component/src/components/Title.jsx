@@ -1,8 +1,5 @@
 
-
 const Title = (props) =>{
-    
-return  <h1 className='heading'>{props.TitleText}</h1>
-   
-}
+    return  <h1 className="heading">{props.titleText}</h1>;
+   }
 export default Title;

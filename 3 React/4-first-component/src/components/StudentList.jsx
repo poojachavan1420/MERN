@@ -1,10 +1,9 @@
-const StudentList= () => {
-
-    const students =['pooja','Advika','Riya','priyanshi','Rudrakshi','isha','arya']
+const StudentList= (props) => {
+  console.log(props.students);
 
     return <ol>
         {
-            students.map((student,index) => <li key={student}>{student}</li>)
+            props.students.map((student,index) => <li key={student}>{student}</li>)
             
         }
     </ol>;
