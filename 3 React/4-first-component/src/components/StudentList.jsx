@@ -1,5 +1,8 @@
 const StudentList= (props) => {
   console.log(props.students);
+  if (!props.students){
+    return <p>No students</p>
+  }
 
     return <ol>
         {

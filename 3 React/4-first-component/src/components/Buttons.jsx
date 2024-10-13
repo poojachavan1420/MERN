@@ -1,17 +1,16 @@
 import './Button.css';
 
+const Button = ({btnType,btnText,handler}) => {
 
-export function DangerButton(){
-    return (
-    <button className="red-button">Delete</button>
-    );
-}
+    if(btnType === 'successs'){
+      return <button className="green-button" onClick={handler}>{btnText}</button>
+    }else if(btnType ==='danger'){
+        return <button className="red-button"   onClick={handler}>{btnText}</button>
+    }else{
+        return <button className="blue-button"   onClick={handler}>{btnText}</button>
+    }
+};
 
+export default Button;
 
-
-export function SuccessButton(){
-    return (
-    <button className="green-button">Save</button>
-    );
-}
 

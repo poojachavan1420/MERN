@@ -1,3 +1,14 @@
+.green-button{
+    background-color: green;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+
+
 .red-button{
     background-color: red;
     color: white;
@@ -7,12 +18,13 @@
     cursor: pointer;
 }
 
-.green-button{
-    background-color: green;
+.blue-button {
+    background-color: blue;
     color: white;
     padding: 10px;
     border-radius: 5px;
     border: none;
     cursor: pointer;
 }
+
 
