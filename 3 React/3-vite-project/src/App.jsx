@@ -5,7 +5,7 @@ function App() {
   
   return (
     <>
-        <h1>Class vs Function component</h1>
+        <h1>class vs Function component</h1>
     </>
   )
 }
