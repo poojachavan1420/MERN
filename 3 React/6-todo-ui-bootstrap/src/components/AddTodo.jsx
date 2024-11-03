@@ -6,6 +6,8 @@ const AddTodo = () => {
     console.log(`Trying to add item`);
   }
 
+  
+
   const textChangeHandler = (event) => {
     console.log(event.target.value, event);
   }
