@@ -1,0 +1,7 @@
+.Container{
+    background-color:hwb(0 81% 15% / 0.734) ;
+    margin: 40px;
+    padding: 10px;
+    border: solid black 2px;
+    border-radius: 5px;
+}
