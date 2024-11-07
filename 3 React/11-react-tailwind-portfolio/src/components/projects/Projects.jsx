@@ -1,5 +1,6 @@
 import { Briefcase} from 'lucide-react';
 import Section from '../Section'
+import Project from './Project';
 
 const Projects = () => {
 
@@ -9,7 +10,7 @@ const Projects = () => {
    ]
 
    return <Section icon={<Briefcase/>} sectionTitle="Projects">
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla, aperiam!</p>
+    {projectList.map (project => <Project title={project.title} desc={project.desc} techUsed={project.techUsed}/>)}
    </Section>
 }
 export default Projects;
