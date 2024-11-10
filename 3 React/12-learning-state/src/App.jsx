@@ -1,8 +1,13 @@
+import { useState } from "react";
 import List from "./components/List"
 
 function App() {
 
-  const studentArr = ["Isha","Advika","Dnyanu","Riya","Shouravi","Aayat","Arya"]
+  const studentArrState =useState(["Isha","Advika","Dnyanu","Riya","Shouravi","Aayat","Arya"]);
+  const studentArr =studentArrState[0];
+  console.log("State Value is:", studentArr);
+
+  
   console.log("came to paint App component");
   console.log(studentArr);
   
