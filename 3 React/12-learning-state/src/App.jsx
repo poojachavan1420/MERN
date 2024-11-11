@@ -3,21 +3,24 @@ import List from "./components/List"
 
 function App() {
 
-  const studentArrState =useState(["Isha","Advika","Dnyanu","Riya","Shouravi","Aayat","Arya"]);
-  const studentArr =studentArrState[0];
+  const [studentArr,setStudentArr]=useState(["Isha","Advika","Dnyanu","Riya","Shouravi","Aayat","Arya"]);
+
+  console.log("Painting App Component");
   console.log("State Value is:", studentArr);
 
   
-  console.log("came to paint App component");
-  console.log(studentArr);
+  
+  
   
     //  let studentArr ;
 
     const onChangeHandler = (event) => {
       if (event.key === "Enter") {
         console.log(event.target.value);
-        studentArr.push(event.target.value);
-        console.log(studentArr);
+        const newArr = [...studentArr, event.target.value];
+        event.target.value ='';
+        setStudentArr(newArr);
+        console.log(newArr);
       }
     };
   
