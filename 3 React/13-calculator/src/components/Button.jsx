@@ -1,10 +1,10 @@
 import React from 'react'
 
-const Button = ({text}) => {
+const Button = ({text,onClickHandler}) => {
   return (
-    <Button>
+    <button onClick={onClickHandler}>
       {text}
-    </Button>
+    </button>
   )
 }
 
