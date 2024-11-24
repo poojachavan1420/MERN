@@ -1,9 +1,17 @@
+import { useRef } from "react";
 import Button from "./Button";
 
-const AddTodo = () => {
+const AddTodo = ({addTodoItem}) => {
+
+  const todoTextInput =  useRef();
+  const todoDateInput =  useRef();
 
   const addHandler = () => {
-    console.log(`Trying to add item`);
+    const todoText = todoTextInput.current.value;
+    const todoDate = todoDateInput.current.value;
+    todoTextInput.current.value='';
+    todoDateInput.current.value='';
+    addTodoItem( todoText, todoDate  );
   }
 
   
@@ -20,11 +28,11 @@ const AddTodo = () => {
             type="text"
             className="form-control"
             placeholder="Enter Todo Here"
-            onChange={textChangeHandler}
-          ></input>
+            ref={todoTextInput}
+          />
         </div>
         <div className="col-3">
-          <input type="date" className="form-control"></input>
+          <input type="date"     ref={todoDateInput}className="form-control" />
         </div>
         <div className="col-2">
           <Button btnType="success" btnText="Add" handler={addHandler}/>
