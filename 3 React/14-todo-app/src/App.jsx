@@ -1,6 +1,8 @@
 
 import AppName from "./components/AppName";
+import StateVsRef from "./components/StateVsRef";
 import AddTodo from "./components/AddTodo";
+import TestForm from "./components/testForm";
 import TodoItems from "./components/TodoItems";
 import Button from "./components/Button";
 
@@ -9,9 +11,11 @@ function App() {
     <>
       <center>
        <AppName/>
-       <AddTodo/>
+       <StateVsRef/>
+       {/* <TestForm/> */}
        <Button/>
-       <TodoItems/>
+       {/* <AddTodo/>
+       <TodoItems/> */}
        </center>
     </>
   );
