@@ -1,37 +1,25 @@
-import { useState } from "react";
+
 import AppName from "./components/AppName";
 import AddTodo from "./components/AddTodo";
 import TodoItems from "./components/TodoItems";
 import Button from "./components/Button";
-import initialTodoItems from "./data/initialTodoItems";
+
+import { TodoItemsProvider } from "./store/TodoItemsContext";
 
 function App() {
 
-const [todoItems , setTodoItems]  = useState(initialTodoItems);
-
-
-const addTodoItem = (todoText ,  todoDate) =>{
-  setTodoItems(currentItems => {
-    return [...currentItems, {id:todoText, todoText, todoDate}]
-  })
-}
-
-const deleteTodoItem = (todoId) => {
-    setTodoItems(currentItems => {
-    return currentItems.filter(item => item.id !== todoId);
-  })
-}
 
 
   return(
-    <>
+    <TodoItemsProvider>
       <center>
        <AppName/>
-       <AddTodo addTodoItem={addTodoItem}/>
+       <AddTodo />
        <Button/>
-       <TodoItems todoItems={todoItems} deleteTodoItem={deleteTodoItem}/>
+       <TodoItems/>
        </center>
-    </>
+       </TodoItemsProvider>
+    
   );
 };
 

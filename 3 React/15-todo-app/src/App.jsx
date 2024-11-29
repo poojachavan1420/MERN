@@ -1,38 +1,33 @@
-import { useState } from "react";
-import AppName from "./components/AppName";
+import {useState} from "react";
+
 import AddTodo from "./components/AddTodo";
+import AppName from "./components/AppName";
 import TodoItems from "./components/TodoItems";
-import Button from "./components/Button";
-import initialTodoItems from "./data/initialTodoItems";
+import initialTodoItems from "./data/InitialTodoItems";
 
 function App() {
 
-const [todoItems , setTodoItems]  = useState(initialTodoItems);
+  const [todoItems, setTodoItems] = useState(initialTodoItems);
 
-
-const addTodoItem = (todoText ,  todoDate) =>{
-  setTodoItems(currentItems => {
-    return [...currentItems, {id:todoText, todoText, todoDate}]
-  })
-}
-
-const deleteTodoItem = (todoId) => {
+  const addTodoItem = (todoText, todoDate) => {
     setTodoItems(currentItems => {
-    return currentItems.filter(item => item.id !== todoId);
-  })
-}
+      return [...currentItems, { id: todoText, todoText, todoDate }]
+    })
+  }
 
+  const deleteTodoItem = (todoId) => {
+    setTodoItems(currentItems => {
+      return currentItems.filter(item => item.id !== todoId);
+    })
+  }
 
-  return(
-    <>
-      <center>
-       <AppName/>
-       <AddTodo addTodoItem={addTodoItem}/>
-       <Button/>
-       <TodoItems todoItems={todoItems} deleteTodoItem={deleteTodoItem}/>
-       </center>
-    </>
+  return (
+    <center>
+      <AppName />
+      <AddTodo addTodoItem={addTodoItem}/>
+      <TodoItems todoItems={todoItems} deleteTodoItem={deleteTodoItem}/>
+    </center>
   );
-};
+}
 
 export default App;

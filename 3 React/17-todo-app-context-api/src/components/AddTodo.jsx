@@ -1,10 +1,12 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import Button from "./Button";
+import { TodoItemsContext } from "../store/TodoItemsContext";
 
-const AddTodo = ({addTodoItem}) => {
+const AddTodo = () => {
 
   const todoTextInput =  useRef();
   const todoDateInput =  useRef();
+  const {addTodoItem}=useContext(TodoItemsContext);
 
   const addHandler = () => {
     const todoText = todoTextInput.current.value;
