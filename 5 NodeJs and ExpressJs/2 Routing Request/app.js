@@ -74,6 +74,6 @@ const requestHandler = (req, res) => {
 };
 
 const server = http.createServer(requestHandler);
-server.listen(5174, () => {
-  console.log("Server is running on http://localhost:5174");
+server.listen(5173, () => {
+  console.log("Server is running on http://localhost:5173");
 });
