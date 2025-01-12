@@ -13,4 +13,4 @@ hostRouter.post("/add-home", (req, res, next) => {
 });
 
 exports.hostRouter = hostRouter;
-exports.registeredHomes = registeredHomes;ss
+exports.registeredHomes = registeredHomes;
