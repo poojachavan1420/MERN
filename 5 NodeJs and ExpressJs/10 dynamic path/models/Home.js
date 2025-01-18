@@ -15,8 +15,9 @@ module.exports = class Home {
   }
 
   save(callback) {
-    Home.fetchAll(registeredHomes => {
+     Home.fetchAll(registeredHomes => {
       if (this.id) { // edit case
+        
         registeredHomes = registeredHomes.map(home => home.id !== this.id ? home : this);
       } else { // new case
         this.id = Math.random().toString();
@@ -47,12 +48,12 @@ module.exports = class Home {
     Home.fetchAll(homes => {
       const newHomes = homes.filter(home => home.id !== homeId);
       fs.writeFile(homeFilePath, JSON.stringify(newHomes), error => {
-        if (error) {
+        if (!error) {
           callback(error);
           return;
         }
-        Favourite.deleteById(homeId, callback);
-      });
-    })
+        Favourite.deleteByHomeId(homeId, callback);
+    });
+  });
   }
 }
