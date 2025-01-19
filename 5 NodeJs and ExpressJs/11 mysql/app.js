@@ -9,13 +9,8 @@ const bodyParser = require("body-parser");
 const { hostRouter } = require("./routers/hostRouter");
 const storeRouter = require("./routers/storeRouter");
 const rootDir = require("./util/path-util");
-const errController = require("./controllers/errorController");
+const errorController = require('./controllers/errorController');
 
-const airbnbDb = require("./util/database-util");
-
-airbnbDb.execute("SELECT * FROM homes").then((data) => {
-  console.log(data);
-})
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -23,11 +18,10 @@ app.set('views', 'views');
 
 app.use(express.static(path.join(rootDir, "public")));
 app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use("/", storeRouter);
+app.use(storeRouter);
 app.use("/host", hostRouter);
 
-app.use(errController.get404);
+app.use(errorController.get404);
 
 const PORT = 5173;
 app.listen(PORT, () => {
