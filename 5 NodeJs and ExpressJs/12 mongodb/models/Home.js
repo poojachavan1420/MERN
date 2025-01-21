@@ -1,34 +1,42 @@
-const Favourite = require("./Favourite");
-const airbnbDb = require("../util/database-util");
+const { ObjectId } = require("mongodb");
+const { getDb } = require("../util/database-util");
 
 module.exports = class Home {
-  constructor(houseName, price, location, rating, photoUrl, description) {
+  constructor(houseName, price, location, rating, photoUrl, description, _id) {
     this.houseName = houseName;
     this.price = price;
     this.location = location;
     this.rating = rating;
     this.photoUrl = photoUrl;
     this.description = description;
+    if (_id) {
+      this._id = new ObjectId(String(_id));
+    }
   }
 
   save() {
-    if (this.id) { // update
-      return airbnbDb.execute('UPDATE homes SET houseName=?, price=?, location=?, rating=?, photoUrl=?, description=? WHERE id=?', [this.houseName, this.price, this.location, this.rating, this.photoUrl, this.description, this.id]);
+    const db = getDb();
+    if (this._id) { // update
+      return db.collection("homes").updateOne({_id: this._id}, {$set: this});
     } else { // insert
-      //return airbnbDb.execute(`INSERT INTO homes (houseName, price, location, rating, photoUrl, description) VALUES ('${this.houseName}', ${this.price}, '${this.location}', ${this.rating}, '${this.photoUrl}', '${this.description}')`);
-      return airbnbDb.execute('INSERT INTO homes (houseName, price, location, rating, photoUrl, description) VALUES (?, ?, ?, ?, ?, ?)', [this.houseName, this.price, this.location, this.rating, this.photoUrl, this.description]);
+      return db.collection("homes").insertOne(this).then(result => {
+        console.log(result);
+      });
     }
   }
 
   static fetchAll() {
-    return airbnbDb.execute("SELECT * FROM homes");
+    const db = getDb();
+    return db.collection('homes').find().toArray();
   }
 
   static findById(homeId) {
-    return airbnbDb.execute("SELECT * FROM homes WHERE id=?", [homeId]);
+    const db = getDb();
+    return db.collection('homes').find({_id: new ObjectId(String(homeId))}).next();
   }
 
   static deleteById(homeId) {
-    return airbnbDb.execute("DELETE FROM homes WHERE id=?", [homeId]);
+    const db = getDb();
+    return db.collection('homes').deleteOne({_id: new ObjectId(String(homeId))});
   }
 };

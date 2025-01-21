@@ -1,32 +1,23 @@
-const fs = require('fs');
-const path = require('path');
-const rootDir = require('../util/path-util');
-
-const favouriteFilePath = path.join(rootDir, 'data', 'favourite.json');
+const { ObjectId } = require("mongodb");
+const { getDb } = require("../util/database-util");
 
 module.exports = class Favourite {
-
-  static fetchAll(callback) {
-    fs.readFile(favouriteFilePath, (err, data) => {
-      if (err) {
-        callback([]);
-      } else {
-        callback(JSON.parse(data));
-      }
-    })
+  constructor(homeId) {
+    this.homeId = new ObjectId(homeId);
   }
 
-  static addToFavourites(homeId, callback) {
-    Favourite.fetchAll(favouriteIds => {
-      favouriteIds.push(homeId);
-      fs.writeFile(favouriteFilePath, JSON.stringify(favouriteIds), callback);
-    });
+  save() {
+    const db = getDb();
+    return db.collection("favourites").insertOne(this);
   }
 
-  static deleteById(removeHomeId, callback) {
-    Favourite.fetchAll(homeIds => {
-      const newHomeIds = homeIds.filter(homeId => removeHomeId !== homeId);
-      fs.writeFile(favouriteFilePath, JSON.stringify(newHomeIds), callback);
-    })
+  static fetchAll() {
+    const db = getDb();
+    return db.collection("favourites").find().toArray();
   }
-}
+
+  static deleteById(homeId) {
+    const db = getDb();
+    return db.collection("favourites").deleteOne({ homeId: new ObjectId(homeId) });
+  }
+};

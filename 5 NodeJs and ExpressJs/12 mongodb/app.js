@@ -11,7 +11,7 @@ const storeRouter = require("./routers/storeRouter");
 const rootDir = require("./util/path-util");
 const errorController = require('./controllers/errorController');
 
-const connectToDatabase = require("./util/database-util");
+const { connectToDatabase } = require("./util/database-util");
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -24,8 +24,8 @@ app.use("/host", hostRouter);
 
 app.use(errorController.get404);
 
-const PORT = 5174;
-connectToDatabase(client => {
+const PORT = 5173;
+connectToDatabase(() => {
   app.listen(PORT, () => {
     console.log(`Server running at: http://localhost:${PORT}`);
   });
