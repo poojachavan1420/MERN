@@ -3,6 +3,7 @@ const { getDb } = require("../util/database-util");
 
 module.exports = class Home {
   constructor(houseName, price, location, rating, photoUrl, description, _id) {
+   
     this.houseName = houseName;
     this.price = price;
     this.location = location;
@@ -17,10 +18,24 @@ module.exports = class Home {
   save() {
     const db = getDb();
     if (this._id) { // update
-      return db.collection("homes").updateOne({_id: this._id}, {$set: this});
+      console.log('Updating home', this);
+      return db.collection("homes").updateOne({_id: this._id}, {$set: this})
+      .then(home => {
+        console.log(home);
+        return home;
+      })
+      .catch(error => {
+        console.log('Error while updating home', error);
+      });
     } else { // insert
-      return db.collection("homes").insertOne(this).then(result => {
-        console.log(result);
+      console.log('Inserting home', this);
+      return db.collection("homes").insertOne(this)
+      .then(home => {
+        console.log(home);
+        return home;
+      })
+      .catch(error => {
+        console.log('Error while inserting home', error);
       });
     }
   }
@@ -32,7 +47,14 @@ module.exports = class Home {
 
   static findById(homeId) {
     const db = getDb();
-    return db.collection('homes').find({_id: new ObjectId(String(homeId))}).next();
+    return db.collection('homes').find({_id: new ObjectId(String(homeId))}).next()
+    .then(home => {
+      console.log(home);
+      return home;
+    })
+    .catch(error => {
+      console.log('Error while fetching home by id', error);
+    });
   }
 
   static deleteById(homeId) {

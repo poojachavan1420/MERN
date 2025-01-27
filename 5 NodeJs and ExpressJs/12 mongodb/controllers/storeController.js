@@ -7,9 +7,6 @@ exports.getIndex = (req, res, next) => {
       homes: registeredHomes,
       pageTitle: "Tumahara airbnb",
     });
-  }).catch(err => {
-    console.log("Error while fetching homes", err);
-    res.redirect('/');
   });
 };
 
@@ -19,15 +16,11 @@ exports.getHomes = (req, res, next) => {
       homes: registeredHomes,
       pageTitle: "Tumahara airbnb",
     });
-  }).catch(err => {
-    console.log("Error while fetching homes", err);
-    res.redirect('/');
   });
 };
 
 exports.getFavourites = (req, res, next) => {
-  Favourite.fetchAll()
-  .then((favouriteIds) => {
+  Favourite.fetchAll().then((favouriteIds) => {
     Home.fetchAll().then((registeredHomes) => {
       favouriteIds = favouriteIds.map((favId) => favId.homeId);
 
@@ -39,13 +32,7 @@ exports.getFavourites = (req, res, next) => {
         homes: favouriteHomes,
         pageTitle: "Favourites",
       });
-    }).catch(err => {
-      console.log("Error while fetching homes", err);
-      res.redirect('/');
     });
-  }).catch(err => {
-    console.log("Error while fetching favourites", err);
-    res.redirect('/');
   });
 };
 
@@ -83,8 +70,5 @@ exports.getHomeDetails = (req, res, next) => {
       return res.redirect("/homes");
     }
     res.render("store/home-detail", { home: home, pageTitle: "Home Detail" });
-  }).catch(err => {
-    console.log("Error while fetching home details", err);
-    res.redirect('/homes');
   });
 };
