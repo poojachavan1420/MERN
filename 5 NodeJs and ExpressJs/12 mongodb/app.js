@@ -24,6 +24,7 @@ app.use("/host", hostRouter);
 
 app.use(errorController.get404);
 
+
 const PORT = 5173;
 connectToDatabase(() => {
   app.listen(PORT, () => {
