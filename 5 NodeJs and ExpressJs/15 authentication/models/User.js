@@ -8,7 +8,12 @@ const homeSchema = new mongoose.Schema({
     password: {type: String, required: true},
     userType: {type: String, required: true , enum: ['host','guest']},
     
-
+    favouriteHomes:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Home',
+        required: true,
+        unique: true,
+      }]
 });
 
 
